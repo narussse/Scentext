@@ -1,0 +1,14 @@
+# ビルド出力
+CPU0/Debug/
+CPU0/Release/
+CPU1/Debug/
+CPU1/Release/
+
+# e2studio/Eclipseの一時ファイル・キャッシュ
+.metadata/
+JLinkLog.log
+*.log
+
+# OS固有
+Thumbs.db
+.DS_Store
