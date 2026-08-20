@@ -30,6 +30,14 @@ Scentextは、応答の遅いガス情報に対して瞬時に消える音の情
 
 <img src="doc/img/demo_setup.png" alt="デモのセットアップ" width="100%">
 
+## デモ動画
+
+紹介資料(`doc/Scentext_応募作品紹介資料.pptx`)pp.11-13の実演動画。
+
+- [デモ結果① スプレー(水 vs アルコール)](https://youtu.be/4oaNcdFGCXA)
+- [デモ結果② アルコールを湿らせた紙](https://youtu.be/nnyO5X-fEu4)
+- [デモ結果③ 呼気の吹きかけ](https://youtu.be/4pa7zj7xIqU)
+
 ## システム構成
 
 GLCDC描画とI2Cガスセンサ読み取りを同一コアで行うとバス競合が起きることが実測でわかったため、
