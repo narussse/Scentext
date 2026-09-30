@@ -74,14 +74,17 @@ GLCDC描画とI2Cガスセンサ読み取りを同一コアで行うとバス競
 
 ## ビルド・書き込み
 
-`CPU0/`・`CPU1/`はそれぞれ独立したe2studioプロジェクト。両方をワークスペースへ
-インポートしてビルドする必要がある。
+`CPU0/`・`CPU1/`はそれぞれ独立したe2studioプロジェクト、`dual_core_net/`は両コア共通の
+セキュリティ・パーティション情報を生成するRAマルチコア「ソリューション」プロジェクト。
+3つともワークスペースへインポートする必要がある(`dual_core_net`が無いと、CPU0の
+ビルド時に生成される`bsp_linker_info.h`が正しく作られずビルドエラーになる)。
 
 1. Wi-Fi通知機能を使う場合、`CPU1/src/esp_notify.c`冒頭の`WIFI_SSID`/`WIFI_PASSWORD`を
    実際のWi-Fi環境の値に書き換える(2.4GHz帯のネットワークであること。ESP8266は
    5GHz帯に非対応)。`NTFY_TOPIC`も、他人と重複しない任意の文字列に変更することを推奨
    (ntfy.shは公開トピック方式のため、トピック名を知っていれば誰でも購読・受信できる)
-2. e2studioで`CPU0`・`CPU1`の両プロジェクトをインポートし、それぞれビルド
+2. e2studioで`dual_core_net`・`CPU0`・`CPU1`の3プロジェクトをインポートし、
+   CPU0・CPU1をそれぞれビルド
 3. EK-RA8P1をPCに接続し、`CPU1/dual_core Debug_Multicore Launch Group.launch`を
    実行する。これはCPU0・CPU1両方のイメージをまとめてボードへ書き込む
    マルチコア用のデバッグ構成で、書き込み後は自動的にリセット・実行開始する
@@ -101,6 +104,7 @@ Scentext/
 ├── LICENSE / NOTICE.md
 ├── CPU0/              # Cortex-M85側 e2studioプロジェクト(ガス+音響サンプリング・推論)
 ├── CPU1/              # Cortex-M33側 e2studioプロジェクト(TFT-LCD表示+Wi-Fi通知)
+├── dual_core_net/     # RAマルチコア「ソリューション」プロジェクト(両コア共通のセキュリティ・パーティション情報)
 └── doc/
     ├── ソフトウェア仕様書.md      # タスク構成・IPC設計・ステータス管理・パラメータ一覧
     ├── Scentext_応募作品操作マニュアル.pdf  # 実機の起動手順・動作確認方法
